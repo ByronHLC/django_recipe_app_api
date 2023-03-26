@@ -1,5 +1,5 @@
 """
-Tests for recipe api.
+Tests for recipe APIs.
 """
 from decimal import Decimal
 
@@ -31,8 +31,8 @@ def create_recipe(user, **params):
     defaults = {
         'title': 'Sample recipe',
         'description': 'Sample recipe description',
-        'time_minute': 5,
-        'price': Decimal(9.9),
+        'time_minutes': 5,
+        'price': Decimal('9.9'),
         'link': 'http://example.com/recipe.pdf'
     }
     defaults.update(params)
@@ -110,7 +110,7 @@ class PrivateRecipeApiTests(TestCase):
         payload = {
             'description': 'Sample recipe description',
             'title': 'Sample recipe',
-            'time_minute': 5,
+            'time_minutes': 5,
             'price': Decimal('9.9'),
             'link': 'http://example.com/recipe.pdf'
         }
@@ -147,7 +147,7 @@ class PrivateRecipeApiTests(TestCase):
             user=self.user,
             title='Sample recipe',
             price=Decimal('9.9'),
-            time_minute=5,
+            time_minutes=5,
             description='Sample recipe description',
             link='http://example.com',
         )
@@ -155,7 +155,7 @@ class PrivateRecipeApiTests(TestCase):
         payload = {
             'title':'New sample recipe',
             'price':Decimal('5.5'),
-            'time_minute':3,
+            'time_minutes':3,
             'description':'New sample recipe description',
             'link':'http://new-example.com',
         }
@@ -169,7 +169,7 @@ class PrivateRecipeApiTests(TestCase):
 
     def test_update_user_returns_error(self):
         """Test updating recipe user throws error."""
-        recipe = create_recipe(user=self.user,)
+        recipe = create_recipe(user=self.user)
         user2 = create_user(email='user2@example.com', password='user2pw')
         url = detail_url(recipe.id)
         payload = {'user': user2}
@@ -181,7 +181,7 @@ class PrivateRecipeApiTests(TestCase):
 
     def test_delete_recipe(self):
         """Test delete a recipe."""
-        recipe = create_recipe(user=self.user,)
+        recipe = create_recipe(user=self.user)
         url = detail_url(recipe.id)
         res = self.client.delete(url)
 
