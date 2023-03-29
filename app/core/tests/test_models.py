@@ -75,8 +75,21 @@ class ModelTests(TestCase):
         self.assertEqual(str(recipe), recipe.title)
 
     def test_create_tag(self):
-        """Test create a new tag successful."""
+        """Test create a new tag is successful."""
         user = create_user()
-        tag = models.Tag.objects.create(user=user, name='Test tag')
+        tag = models.Tag.objects.create(
+            user=user,
+            name='Test tag',
+        )
 
         self.assertEqual(str(tag), tag.name)
+
+    def test_create_ingredient(self):
+        """Test creating a new ingredient is successful."""
+        user = create_user()
+        ingredient = models.Ingredient.objects.create(
+            user=user,
+            name='Test ingredient',
+        )
+
+        self.assertEqual(str(ingredient), ingredient.name)
