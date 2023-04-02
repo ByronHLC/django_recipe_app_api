@@ -1,4 +1,4 @@
-FROM python:3.9-alpine3.17
+FROM python:3.9-alpine3.13
 LABEL mainteiner = "e-nvetario.com"
 
 ENV PYTHONUNBUFFERED 1
